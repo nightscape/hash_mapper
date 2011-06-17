@@ -16,16 +16,6 @@ rescue LoadError
 end
 
 
-
-# This allows us to call blah(&:some_method) instead of blah{|i| i.some_method }
-unless Symbol.instance_methods.include?('to_proc')
-  class Symbol
-    def to_proc
-      Proc.new {|obj| obj.send(self) }
-    end
-  end
-end
-
 # http://rpheath.com/posts/341-ruby-inject-with-index
 unless Array.instance_methods.include?("inject_with_index")
   module Enumerable
